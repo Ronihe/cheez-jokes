@@ -1,10 +1,13 @@
 import { VOTE_UP, VOTE_DOWN, GET_NEW } from './actionTypes';
 
-function rootReducer(state = [], action) {
+function rootReducer(state = { nextPage: 0, jokes: [] }, action) {
   switch (action.type) {
     case GET_NEW:
       console.log('ACTION', action);
-      return [...state, ...action.jokes];
+      return {
+        nextPage: action.page,
+        jokes: [...state.jokes, ...action.jokes]
+      };
     default:
       return state;
   }

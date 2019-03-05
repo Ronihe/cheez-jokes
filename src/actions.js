@@ -8,22 +8,30 @@ const LIMIT = 20;
 export function getNewJokes(page = 1) {
   return async function(dispatch) {
     //https://icanhazdadjoke.com/search?limit=20&page=2
+
+    console.log('in actions', page);
     try {
       const response = await axios.get(
         `${BASE_URL}?limit=${LIMIT}&page=${page}`,
         { headers: { Accept: 'application/json' } }
       );
-      console.log('RESPONSE', response.results);
-      return dispatch(getJokes(response.data.results));
+      const jokesWithVotes = response.data.results.map(joke => ({
+        ...joke,
+        votes: 0
+      }));
+      page++;
+      console.log(page, jokesWithVotes);
+      return dispatch(getJokes(jokesWithVotes, page));
     } catch {
       console.log('error');
     }
   };
 }
 
-function getJokes(jokes) {
+function getJokes(jokes, page) {
   return {
     type: GET_NEW,
-    jokes
+    jokes,
+    page
   };
 }
