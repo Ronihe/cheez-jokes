@@ -42,7 +42,7 @@ class Jokes extends Component {
         ))}
 
         <div>
-          <p> Page:{this.props.page - 1 || 'loading'}</p>
+          <p> Page:{this.props.page ? this.props.page - 1 : 'loading'}</p>
           <button onClick={this.newJokes}>I want new jokes</button>
           <Home {...this.props} />
         </div>
