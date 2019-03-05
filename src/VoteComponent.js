@@ -18,8 +18,8 @@ class VoteComponent extends Component {
 
   render() {
     return (
-      <div className="Vote">
-        <div>{this.props.joke.votes} votes.</div>
+      <span className="Vote">
+        [<span>{this.props.joke.votes} votes.</span>
         <i
           className="fas fa-thumbs-up text-success"
           onClick={this.handleVoteUp}
@@ -28,7 +28,8 @@ class VoteComponent extends Component {
           className="fas fa-thumbs-down text-danger"
           onClick={this.handleVoteDown}
         />
-      </div>
+        ]
+      </span>
     );
   }
 }

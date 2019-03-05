@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getNewJokes } from '../actions';
 import Home from '../Home';
-import Vote from './Votes';
+import Votes from './Votes';
 
 class Jokes extends Component {
   constructor(props) {
@@ -29,15 +29,15 @@ class Jokes extends Component {
         {sortedJokes.slice(0, 5).map(joke => (
           <div>
             {' '}
-            {joke.joke} <span>Votes:{joke.votes}</span>
+            {joke.joke}
+            <Votes id={joke.id} />
           </div>
         ))}
 
         <div> Bottom Five</div>
         {sortedJokes.slice(-5).map(joke => (
           <div>
-            {' '}
-            {joke.joke} <span>Votes:{joke.votes}</span>
+            {joke.joke} <Votes id={joke.id} />
           </div>
         ))}
 

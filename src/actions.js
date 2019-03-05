@@ -19,10 +19,12 @@ export function getNewJokes(page = 1) {
         ...joke,
         votes: 0
       }));
+      if (jokesWithVotes.length === 0) throw new Error('no more jokes');
       page++;
       console.log(page, jokesWithVotes);
       return dispatch(getJokes(jokesWithVotes, page));
-    } catch {
+    } catch (err) {
+      alert(err);
       console.log('error');
     }
   };
