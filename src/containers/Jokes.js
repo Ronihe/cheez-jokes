@@ -19,21 +19,27 @@ class Jokes extends Component {
     await this.props.getNewJokes(this.props.page);
   }
   render() {
-    // const sortedJokes = this.props.jokes.sort((a, b) => {
-    //   return -a.votes + b.votes;
-    // });
-    // console.log(sortedJokes);
+    const sortedJokes = this.props.jokes.slice().sort((a, b) => {
+      return b.votes - a.votes;
+    });
+    console.log(sortedJokes);
     return (
       <div>
         <div> Top Five</div>
+        {sortedJokes.slice(0, 5).map(joke => (
+          <div>
+            {' '}
+            {joke.joke} <span>Votes:{joke.votes}</span>
+          </div>
+        ))}
 
-        {/* {sortedJokes.slice(0,5).map((j, idx)=>{
-            return 
-            (<li id={j.id} key={j.id}>
-            <span> {idx + 1}</span> 
-            {j.joke}
-            <Votes id={j.id} />
-    </li>)}} */}
+        <div> Bottom Five</div>
+        {sortedJokes.slice(-5).map(joke => (
+          <div>
+            {' '}
+            {joke.joke} <span>Votes:{joke.votes}</span>
+          </div>
+        ))}
 
         <div>
           <p> Page:{this.props.page - 1 || 'loading'}</p>
