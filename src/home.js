@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import Votes from './containers/Votes';
 class Home extends Component {
   render() {
     return (
@@ -8,6 +8,7 @@ class Home extends Component {
           return (
             <li id={j.id} key={j.id}>
               <span> {idx + 1}</span> {j.joke}
+              <Votes id={j.id} />
             </li>
           );
         })}

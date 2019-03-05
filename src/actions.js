@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { GET_NEW } from './actionTypes';
+import { GET_NEW, VOTE_UP, VOTE_DOWN } from './actionTypes';
 
 const BASE_URL = 'https://icanhazdadjoke.com/search';
 const LIMIT = 20;
@@ -34,4 +34,11 @@ function getJokes(jokes, page) {
     jokes,
     page
   };
+}
+export function voteUp(id) {
+  return { type: VOTE_UP, id: id };
+}
+
+export function voteDown(id) {
+  return { type: VOTE_DOWN, id: id };
 }

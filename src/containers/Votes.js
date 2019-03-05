@@ -1,19 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { action } from '../actionCreator';
-import Component from '../components/Component';
+import { voteDown, voteUp } from '../actions';
+import VoteComponent from '../VoteComponent';
 class Votes extends Component {
   render() {
-    return <Component {...this.props} />;
+    //take the id and update the votes
+    return <VoteComponent {...this.props} />;
   }
 }
-function mapStateToProps(state) {
+function mapStateToProps(state, ownProps) {
   return {
-    count: state.count
+    joke: state.jokes.filter(joke => joke.id === ownProps.id)[0]
   };
 }
 const connected = connect(
   mapStateToProps,
-  { action }
+  { voteUp, voteDown }
 );
 export default connected(Votes);
