@@ -10,6 +10,7 @@ function rootReducer(state = { nextPage: 0, jokes: [] }, action) {
     case VOTE_UP:
       //action.id
       return {
+        nextPage: state.nextPage,
         jokes: state.jokes.map(joke => {
           return joke.id === action.id
             ? { ...joke, votes: joke.votes + 1 }
@@ -19,6 +20,7 @@ function rootReducer(state = { nextPage: 0, jokes: [] }, action) {
     case VOTE_DOWN:
       //action.id
       return {
+        nextPage: state.nextPage,
         jokes: state.jokes.map(joke => {
           return joke.id === action.id
             ? { ...joke, votes: joke.votes - 1 }
