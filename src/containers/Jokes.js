@@ -5,7 +5,8 @@ import Home from '../Home';
 
 class Jokes extends Component {
   async componentDidMount() {
-    if (!this.props.jokes.length === 0) {
+    console.log('PROPS', this.props);
+    if (this.props.jokes.length === 0) {
       await this.props.getNewJokes();
     }
   }
